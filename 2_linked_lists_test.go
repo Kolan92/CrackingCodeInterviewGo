@@ -8,41 +8,41 @@ import (
 func TestRemoveDuplicates(t *testing.T) {
 
 	t.Run("List without duplicates", func(t *testing.T) {
-		list := Node[int] {
+		list := Node[int]{
 			value: 20,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 22,
-				next: nil,
+				next:  nil,
 			},
 		}
 
 		removeDuplicates(&list)
 
 		assert.NotNil(t, list.next)
-	}) 
+	})
 
 	t.Run("List with duplicates in the end", func(t *testing.T) {
-		list := Node[int] {
+		list := Node[int]{
 			value: 20,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 20,
-				next: nil,
+				next:  nil,
 			},
 		}
 
 		removeDuplicates(&list)
 
 		assert.Nil(t, list.next)
-	}) 
+	})
 
 	t.Run("List with duplicates in the middle", func(t *testing.T) {
-		list := Node[int] {
+		list := Node[int]{
 			value: 20,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 20,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 21,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
@@ -54,13 +54,13 @@ func TestRemoveDuplicates(t *testing.T) {
 	})
 
 	t.Run("Removes not consecutive duplicates", func(t *testing.T) {
-		list := Node[int] {
+		list := Node[int]{
 			value: 20,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 21,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 20,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
@@ -71,15 +71,15 @@ func TestRemoveDuplicates(t *testing.T) {
 	})
 
 	t.Run("Removes multiple duplicates", func(t *testing.T) {
-		list := Node[int] {
+		list := Node[int]{
 			value: 20,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 20,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 20,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 20,
-						next: nil,
+						next:  nil,
 					},
 				},
 			},
@@ -91,17 +91,17 @@ func TestRemoveDuplicates(t *testing.T) {
 	})
 
 	t.Run("Removes multiple different duplicates", func(t *testing.T) {
-		list := Node[int] {
+		list := Node[int]{
 			value: 20,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 21,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 20,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 21,
-						next: &Node[int] {
+						next: &Node[int]{
 							value: 23,
-							next: nil,
+							next:  nil,
 						},
 					},
 				},
@@ -116,10 +116,9 @@ func TestRemoveDuplicates(t *testing.T) {
 	})
 }
 
-
 func TestFindLast(t *testing.T) {
-	t.Run("Should return first node given one node list", func(t *testing.T)  {
-		list := Node[int] {
+	t.Run("Should return first node given one node list", func(t *testing.T) {
+		list := Node[int]{
 			value: 20,
 			next:  nil,
 		}
@@ -129,48 +128,46 @@ func TestFindLast(t *testing.T) {
 		assert.Equal(t, list.value, node.value)
 	})
 
-	t.Run("Should return 3rd last node", func(t *testing.T)  {
-		list := Node[int] {
+	t.Run("Should return 3rd last node", func(t *testing.T) {
+		list := Node[int]{
 			value: 1,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 2,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 3,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 4,
-						next: &Node[int] {
+						next: &Node[int]{
 							value: 5,
-							next: nil,
+							next:  nil,
 						},
 					},
 				},
 			},
 		}
-
 
 		node := findLast(&list, 2)
 
 		assert.Equal(t, 3, node.value)
 	})
 
-	t.Run("Should return last node given long list", func(t *testing.T)  {
-		list := Node[int] {
+	t.Run("Should return last node given long list", func(t *testing.T) {
+		list := Node[int]{
 			value: 1,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 2,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 3,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 4,
-						next: &Node[int] {
+						next: &Node[int]{
 							value: 5,
-							next: nil,
+							next:  nil,
 						},
 					},
 				},
 			},
 		}
-
 
 		node := findLast(&list, 0)
 
@@ -179,35 +176,35 @@ func TestFindLast(t *testing.T) {
 }
 
 func TestPartition(t *testing.T) {
-	
-	t.Run("One element list", func(t *testing.T)  {
-		list := Node[int] {
+
+	t.Run("One element list", func(t *testing.T) {
+		list := Node[int]{
 			value: 1,
-			next: nil,
+			next:  nil,
 		}
 
 		partitionedList := partition(&list, 2)
 
-		expectedList := &Node[int] {
+		expectedList := &Node[int]{
 			value: 1,
-			next: nil,
+			next:  nil,
 		}
 
 		assert.Equal(t, expectedList, partitionedList)
 	})
 
-	t.Run("List with multiple unordered elements", func(t *testing.T)  {
-		list := Node[int] {
+	t.Run("List with multiple unordered elements", func(t *testing.T) {
+		list := Node[int]{
 			value: 5,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 2,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 8,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 1,
-						next: &Node[int] {
+						next: &Node[int]{
 							value: 3,
-							next: nil,
+							next:  nil,
 						},
 					},
 				},
@@ -216,17 +213,17 @@ func TestPartition(t *testing.T) {
 
 		partitionedList := partition(&list, 3)
 
-		expectedList := &Node[int] {
+		expectedList := &Node[int]{
 			value: 2,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 1,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 5,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 8,
-						next: &Node[int] {
+						next: &Node[int]{
 							value: 3,
-							next: nil,
+							next:  nil,
 						},
 					},
 				},
@@ -236,18 +233,18 @@ func TestPartition(t *testing.T) {
 		assert.Equal(t, expectedList, partitionedList)
 	})
 
-	t.Run("List all bigger elements", func(t *testing.T)  {
-		list := Node[int] {
+	t.Run("List all bigger elements", func(t *testing.T) {
+		list := Node[int]{
 			value: 5,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 2,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 8,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 1,
-						next: &Node[int] {
+						next: &Node[int]{
 							value: 3,
-							next: nil,
+							next:  nil,
 						},
 					},
 				},
@@ -256,17 +253,17 @@ func TestPartition(t *testing.T) {
 
 		partitionedList := partition(&list, 0)
 
-		expectedList := &Node[int] {
+		expectedList := &Node[int]{
 			value: 5,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 2,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 8,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 1,
-						next: &Node[int] {
+						next: &Node[int]{
 							value: 3,
-							next: nil,
+							next:  nil,
 						},
 					},
 				},
@@ -278,38 +275,38 @@ func TestPartition(t *testing.T) {
 }
 
 func TestSumReversed(t *testing.T) {
-	t.Run("617+295=912", func(t *testing.T){
-		numberA := Node[int] {
+	t.Run("617+295=912", func(t *testing.T) {
+		numberA := Node[int]{
 			value: 7,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 1,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 6,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
 
-		numberB := Node[int] {
+		numberB := Node[int]{
 			value: 5,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 9,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 2,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
 
 		actualSum := sumReversed(&numberA, &numberB)
 
-		expectedSum := &Node[int] {
+		expectedSum := &Node[int]{
 			value: 2,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 1,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 9,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
@@ -317,35 +314,35 @@ func TestSumReversed(t *testing.T) {
 		assert.Equal(t, expectedSum, actualSum)
 	})
 
-	t.Run("617+28=645", func(t *testing.T){
-		numberA := Node[int] {
+	t.Run("617+28=645", func(t *testing.T) {
+		numberA := Node[int]{
 			value: 7,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 1,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 6,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
 
-		numberB := Node[int] {
+		numberB := Node[int]{
 			value: 8,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 2,
-				next: nil,
+				next:  nil,
 			},
 		}
 
 		actualSum := sumReversed(&numberA, &numberB)
 
-		expectedSum := &Node[int] {
+		expectedSum := &Node[int]{
 			value: 5,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 4,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 6,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
@@ -353,41 +350,40 @@ func TestSumReversed(t *testing.T) {
 		assert.Equal(t, expectedSum, actualSum)
 	})
 }
-
 
 func TestSum(t *testing.T) {
-	t.Run("617+295=912", func(t *testing.T){
-		numberA := Node[int] {
+	t.Run("617+295=912", func(t *testing.T) {
+		numberA := Node[int]{
 			value: 6,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 1,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 7,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
 
-		numberB := Node[int] {
+		numberB := Node[int]{
 			value: 2,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 9,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 5,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
 
 		actualSum := sum(&numberA, &numberB)
 
-		expectedSum := &Node[int] {
+		expectedSum := &Node[int]{
 			value: 9,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 1,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 2,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
@@ -395,35 +391,35 @@ func TestSum(t *testing.T) {
 		assert.Equal(t, expectedSum, actualSum)
 	})
 
-	t.Run("617+28=645", func(t *testing.T){
-		numberA := Node[int] {
+	t.Run("617+28=645", func(t *testing.T) {
+		numberA := Node[int]{
 			value: 6,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 1,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 7,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
 
-		numberB := Node[int] {
+		numberB := Node[int]{
 			value: 2,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 8,
-				next: nil,
+				next:  nil,
 			},
 		}
 
 		actualSum := sum(&numberA, &numberB)
 
-		expectedSum := &Node[int] {
+		expectedSum := &Node[int]{
 			value: 6,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 4,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 5,
-					next: nil,
+					next:  nil,
 				},
 			},
 		}
@@ -431,21 +427,20 @@ func TestSum(t *testing.T) {
 		assert.Equal(t, expectedSum, actualSum)
 	})
 }
-
 
 func TestReverseLinkedList(t *testing.T) {
 
-	list := Node[int] {
+	list := Node[int]{
 		value: 5,
-		next: &Node[int] {
+		next: &Node[int]{
 			value: 2,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 8,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 1,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 3,
-						next: nil,
+						next:  nil,
 					},
 				},
 			},
@@ -454,17 +449,17 @@ func TestReverseLinkedList(t *testing.T) {
 
 	reversedList := reverseLinkedList(&list)
 
-	expectedList := Node[int] {
+	expectedList := Node[int]{
 		value: 3,
-		next: &Node[int] {
+		next: &Node[int]{
 			value: 1,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 8,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 2,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 5,
-						next: nil,
+						next:  nil,
 					},
 				},
 			},
@@ -474,42 +469,42 @@ func TestReverseLinkedList(t *testing.T) {
 	assert.Equal(t, &expectedList, reversedList)
 }
 
-func TestFindLoop(t *testing.T)  {
+func TestFindLoop(t *testing.T) {
 
-	t.Run("Without loop", func (t *testing.T)  {	
-		list := Node[int] {
+	t.Run("Without loop", func(t *testing.T) {
+		list := Node[int]{
 			value: 1,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 2,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 3,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 4,
-						next: &Node[int] {
+						next: &Node[int]{
 							value: 5,
-							next: nil,
+							next:  nil,
 						},
 					},
 				},
 			},
 		}
-		
+
 		foundNodeBeginingLoop := findLoop(&list)
 		assert.Nil(t, foundNodeBeginingLoop)
 	})
 
-	t.Run("With loop", func (t *testing.T)  {	
-		list := Node[int] {
+	t.Run("With loop", func(t *testing.T) {
+		list := Node[int]{
 			value: 1,
-			next: &Node[int] {
+			next: &Node[int]{
 				value: 2,
-				next: &Node[int] {
+				next: &Node[int]{
 					value: 3,
-					next: &Node[int] {
+					next: &Node[int]{
 						value: 4,
-						next: &Node[int] {
+						next: &Node[int]{
 							value: 5,
-							next: nil,
+							next:  nil,
 						},
 					},
 				},
@@ -519,27 +514,27 @@ func TestFindLoop(t *testing.T)  {
 		nodeAtBeginingOfLoop := list.next.next
 
 		list.next.next.next.next.next = nodeAtBeginingOfLoop
-		
+
 		foundNodeBeginingLoop := findLoop(&list)
 
 		assert.Equal(t, nodeAtBeginingOfLoop, foundNodeBeginingLoop)
 	})
 }
 
-func TestIsPalindrom(t *testing.T)  {
+func TestIsPalindrom(t *testing.T) {
 
-	t.Run("Not palindrom", func(t *testing.T)  {
-		list := Node[rune] {
+	t.Run("Not palindrom", func(t *testing.T) {
+		list := Node[rune]{
 			value: 'K',
-			next: &Node[rune] {
+			next: &Node[rune]{
 				value: 'A',
-				next: &Node[rune] {
+				next: &Node[rune]{
 					value: 'Y',
-					next: &Node[rune] {
+					next: &Node[rune]{
 						value: 'A',
-						next: &Node[rune] {
+						next: &Node[rune]{
 							value: 'Z',
-							next: nil,
+							next:  nil,
 						},
 					},
 				},
@@ -551,18 +546,18 @@ func TestIsPalindrom(t *testing.T)  {
 		assert.False(t, isPalindrom)
 	})
 
-	t.Run("Palindrom", func(t *testing.T)  {
-		list := Node[rune] {
+	t.Run("Palindrom", func(t *testing.T) {
+		list := Node[rune]{
 			value: 'K',
-			next: &Node[rune] {
+			next: &Node[rune]{
 				value: 'A',
-				next: &Node[rune] {
+				next: &Node[rune]{
 					value: 'Y',
-					next: &Node[rune] {
+					next: &Node[rune]{
 						value: 'A',
-						next: &Node[rune] {
+						next: &Node[rune]{
 							value: 'K',
-							next: nil,
+							next:  nil,
 						},
 					},
 				},
@@ -573,5 +568,5 @@ func TestIsPalindrom(t *testing.T)  {
 
 		assert.True(t, isPalindrom)
 	})
-	
+
 }

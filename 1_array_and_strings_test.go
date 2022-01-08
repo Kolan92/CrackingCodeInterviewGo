@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/stretchr/testify/assert"
-	"testing"
 	"strings"
+	"testing"
 )
 
 func TestHasOnlyUniqueChars(t *testing.T) {
@@ -56,28 +56,28 @@ func TestIsPermutation(t *testing.T) {
 		assert.True(t, isPermutation)
 	})
 
-	t.Run("Not permutated int inputs", func(t *testing.T)  {
-		isPermutation := isPermutationOf([]int{1, 2, 3}, []int{1, 2, 5} )
+	t.Run("Not permutated int inputs", func(t *testing.T) {
+		isPermutation := isPermutationOf([]int{1, 2, 3}, []int{1, 2, 5})
 		assert.False(t, isPermutation)
 	})
 
-	t.Run("Not permutated double inputs", func(t *testing.T)  {
-		isPermutation := isPermutationOf([]float32{1.5, 2.5, 3.5}, []float32{1.5, 2.5, 5.5} )
+	t.Run("Not permutated double inputs", func(t *testing.T) {
+		isPermutation := isPermutationOf([]float32{1.5, 2.5, 3.5}, []float32{1.5, 2.5, 5.5})
 		assert.False(t, isPermutation)
 	})
 
-	t.Run("Not permutated when some letters are not the same case", func(t *testing.T)  {
+	t.Run("Not permutated when some letters are not the same case", func(t *testing.T) {
 		isPermutation := isPermutation("Axl Rose", "Oral Sex")
 		assert.False(t, isPermutation)
 	})
 
-	t.Run("Permutated string inputs", func(t *testing.T)  {
+	t.Run("Permutated string inputs", func(t *testing.T) {
 		isPermutation := isPermutation(strings.ToLower("Axl Rose"), strings.ToLower("Oral Sex"))
 		assert.True(t, isPermutation)
 	})
 
-	t.Run("Permutated double inputs", func(t *testing.T)  {
-		isPermutation := isPermutationOf([]float32{1.5, 2.5, 3.5}, []float32{1.5, 2.5, 3.5} )
+	t.Run("Permutated double inputs", func(t *testing.T) {
+		isPermutation := isPermutationOf([]float32{1.5, 2.5, 3.5}, []float32{1.5, 2.5, 3.5})
 		assert.True(t, isPermutation)
 	})
 }
@@ -105,12 +105,12 @@ func TestEncodeString(t *testing.T) {
 }
 
 func TestCompresString(t *testing.T) {
-	t.Run("Empty string", func(t *testing.T)  {
+	t.Run("Empty string", func(t *testing.T) {
 		compressed := compres("")
 		assert.Equal(t, "", compressed)
 	})
 
-	t.Run("Should compres string", func(t *testing.T)  {
+	t.Run("Should compres string", func(t *testing.T) {
 		compressed := compres("aabcccccaaa")
 		assert.Equal(t, "a2b1c5a3", compressed)
 	})
@@ -129,22 +129,22 @@ func TestRotateMatrix90Degrees(t *testing.T) {
 	})
 
 	t.Run("One element matrix", func(t *testing.T) {
-		matrix := [][]pixel{ 
-			[]pixel{ 
-				pixel {
-					red: 1,
+		matrix := [][]pixel{
+			[]pixel{
+				pixel{
+					red:   1,
 					green: 1,
-					blue: 1,
+					blue:  1,
 					alpha: 1,
 				},
 			},
 		}
-		expectedMatrix := [][]pixel{ 
-			[]pixel{ 
-				pixel {
-					red: 1,
+		expectedMatrix := [][]pixel{
+			[]pixel{
+				pixel{
+					red:   1,
 					green: 1,
-					blue: 1,
+					blue:  1,
 					alpha: 1,
 				},
 			},
@@ -154,64 +154,64 @@ func TestRotateMatrix90Degrees(t *testing.T) {
 	})
 
 	t.Run("Four elements matrix", func(t *testing.T) {
-		matrix := [][]pixel{ 
-			[]pixel{ 
-				pixel {
-					red: 1,
+		matrix := [][]pixel{
+			[]pixel{
+				pixel{
+					red:   1,
 					green: 1,
-					blue: 1,
+					blue:  1,
 					alpha: 1,
 				},
-				pixel {
-					red: 2,
+				pixel{
+					red:   2,
 					green: 2,
-					blue: 2,
+					blue:  2,
 					alpha: 2,
 				},
 			},
-			[]pixel{ 
-				pixel {
-					red: 3,
+			[]pixel{
+				pixel{
+					red:   3,
 					green: 3,
-					blue: 3,
+					blue:  3,
 					alpha: 3,
 				},
-				pixel {
-					red: 4,
+				pixel{
+					red:   4,
 					green: 4,
-					blue: 4,
+					blue:  4,
 					alpha: 4,
 				},
 			},
 		}
 		rotateMatrix90Degrees(&matrix)
 
-		expectedMatrix := [][]pixel{ 
-			[]pixel{ 
-				pixel {
-					red: 3,
+		expectedMatrix := [][]pixel{
+			[]pixel{
+				pixel{
+					red:   3,
 					green: 3,
-					blue: 3,
+					blue:  3,
 					alpha: 3,
 				},
-				pixel {
-					red: 1,
+				pixel{
+					red:   1,
 					green: 1,
-					blue: 1,
+					blue:  1,
 					alpha: 1,
 				},
 			},
-			[]pixel{ 
-				pixel {
-					red: 4,
+			[]pixel{
+				pixel{
+					red:   4,
 					green: 4,
-					blue: 4,
+					blue:  4,
 					alpha: 4,
 				},
-				pixel {
-					red: 2,
+				pixel{
+					red:   2,
 					green: 2,
-					blue: 2,
+					blue:  2,
 					alpha: 2,
 				},
 			},
@@ -220,128 +220,128 @@ func TestRotateMatrix90Degrees(t *testing.T) {
 	})
 
 	t.Run("Nine elements matrix", func(t *testing.T) {
-		matrix := [][]pixel{ 
-			[]pixel{ 
-				pixel {
-					red: 1,
+		matrix := [][]pixel{
+			[]pixel{
+				pixel{
+					red:   1,
 					green: 1,
-					blue: 1,
+					blue:  1,
 					alpha: 1,
 				},
-				pixel {
-					red: 2,
+				pixel{
+					red:   2,
 					green: 2,
-					blue: 2,
+					blue:  2,
 					alpha: 2,
 				},
-				pixel {
-					red: 3,
+				pixel{
+					red:   3,
 					green: 3,
-					blue: 3,
+					blue:  3,
 					alpha: 3,
 				},
 			},
-			[]pixel{ 
-				pixel {
-					red: 4,
+			[]pixel{
+				pixel{
+					red:   4,
 					green: 4,
-					blue: 4,
+					blue:  4,
 					alpha: 4,
 				},
-				pixel {
-					red: 5,
+				pixel{
+					red:   5,
 					green: 5,
-					blue: 5,
+					blue:  5,
 					alpha: 5,
 				},
-				pixel {
-					red: 6,
+				pixel{
+					red:   6,
 					green: 6,
-					blue: 6,
+					blue:  6,
 					alpha: 6,
 				},
 			},
-			[]pixel{ 
-				pixel {
-					red: 7,
+			[]pixel{
+				pixel{
+					red:   7,
 					green: 7,
-					blue: 7,
+					blue:  7,
 					alpha: 7,
 				},
-				pixel {
-					red: 8,
+				pixel{
+					red:   8,
 					green: 8,
-					blue: 8,
+					blue:  8,
 					alpha: 8,
 				},
-				pixel {
-					red: 9,
+				pixel{
+					red:   9,
 					green: 9,
-					blue: 9,
+					blue:  9,
 					alpha: 9,
 				},
 			},
 		}
 		rotateMatrix90Degrees(&matrix)
 
-		expectedMatrix := [][]pixel{ 
-			[]pixel{ 
-				pixel {
-					red: 7,
+		expectedMatrix := [][]pixel{
+			[]pixel{
+				pixel{
+					red:   7,
 					green: 7,
-					blue: 7,
+					blue:  7,
 					alpha: 7,
 				},
-				pixel {
-					red: 4,
+				pixel{
+					red:   4,
 					green: 4,
-					blue: 4,
+					blue:  4,
 					alpha: 4,
 				},
-				pixel {
-					red: 1,
+				pixel{
+					red:   1,
 					green: 1,
-					blue: 1,
+					blue:  1,
 					alpha: 1,
 				},
 			},
-			[]pixel{ 
-				pixel {
-					red: 8,
+			[]pixel{
+				pixel{
+					red:   8,
 					green: 8,
-					blue: 8,
+					blue:  8,
 					alpha: 8,
 				},
-				pixel {
-					red: 5,
+				pixel{
+					red:   5,
 					green: 5,
-					blue: 5,
+					blue:  5,
 					alpha: 5,
 				},
-				pixel {
-					red: 2,
+				pixel{
+					red:   2,
 					green: 2,
-					blue: 2,
+					blue:  2,
 					alpha: 2,
 				},
 			},
-			[]pixel{ 
-				pixel {
-					red: 9,
+			[]pixel{
+				pixel{
+					red:   9,
 					green: 9,
-					blue: 9,
+					blue:  9,
 					alpha: 9,
 				},
-				pixel {
-					red: 6,
+				pixel{
+					red:   6,
 					green: 6,
-					blue: 6,
+					blue:  6,
 					alpha: 6,
 				},
-				pixel {
-					red: 3,
+				pixel{
+					red:   3,
 					green: 3,
-					blue: 3,
+					blue:  3,
 					alpha: 3,
 				},
 			},
@@ -360,14 +360,14 @@ func TestZeroColumnsAndRows(t *testing.T) {
 
 	t.Run("Matrix without zeros", func(t *testing.T) {
 		matrix := [][]int{
-			[]int { 2, 4, 6},
-			[]int { 1, 2, 3},
-			[]int { 7, 9, 8},
+			[]int{2, 4, 6},
+			[]int{1, 2, 3},
+			[]int{7, 9, 8},
 		}
 		expectedMatrix := [][]int{
-			[]int { 2, 4, 6},
-			[]int { 1, 2, 3},
-			[]int { 7, 9, 8},
+			[]int{2, 4, 6},
+			[]int{1, 2, 3},
+			[]int{7, 9, 8},
 		}
 
 		assert.Equal(t, expectedMatrix, matrix)
@@ -375,12 +375,12 @@ func TestZeroColumnsAndRows(t *testing.T) {
 
 	t.Run("Should insert zeroes in small matrix", func(t *testing.T) {
 		matrix := [][]int{
-			[]int { 0, 4},
-			[]int { 1, 2},
+			[]int{0, 4},
+			[]int{1, 2},
 		}
 		expectedMatrix := [][]int{
-			[]int { 0, 0},
-			[]int { 0, 2},
+			[]int{0, 0},
+			[]int{0, 2},
 		}
 		zeroColumnsAndRows(&matrix)
 
@@ -389,19 +389,18 @@ func TestZeroColumnsAndRows(t *testing.T) {
 
 	t.Run("Should insert zeroes in big matrix", func(t *testing.T) {
 		matrix := [][]int{
-			[]int { 0, 4, 6, 6, 7},
-			[]int { 1, 2, 3, 4, 6},
-			[]int { 7, 0, 4, 9, 8},
-			[]int { 1, 2, 5, 4, 6},
-			[]int { 7, 2, 3, 4, 6},
-
+			[]int{0, 4, 6, 6, 7},
+			[]int{1, 2, 3, 4, 6},
+			[]int{7, 0, 4, 9, 8},
+			[]int{1, 2, 5, 4, 6},
+			[]int{7, 2, 3, 4, 6},
 		}
 		expectedMatrix := [][]int{
-			[]int { 0, 0, 0, 0, 0},
-			[]int { 0, 0, 3, 4, 6},
-			[]int { 0, 0, 0, 0, 0},
-			[]int { 0, 0, 5, 4, 6},
-			[]int { 0, 0, 3, 4, 6},
+			[]int{0, 0, 0, 0, 0},
+			[]int{0, 0, 3, 4, 6},
+			[]int{0, 0, 0, 0, 0},
+			[]int{0, 0, 5, 4, 6},
+			[]int{0, 0, 3, 4, 6},
 		}
 		zeroColumnsAndRows(&matrix)
 

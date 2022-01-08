@@ -1,9 +1,10 @@
 package main
 
 import (
-	"strings"
-	"fmt"
+	"constraints"
 	"errors"
+	"fmt"
+	"strings"
 )
 
 func hasOnlyUniqueChars(input string) bool {
@@ -36,8 +37,8 @@ func isPermutation(input, other string) bool {
 	return isPermutationOf[rune]([]rune(input), []rune(other))
 }
 
-func isPermutationOf[K comparable](input, other []K) bool {
-	existingChars := map[K]bool {}
+func isPermutationOf[K constraints.Ordered](input, other []K) bool {
+	existingChars := map[K]bool{}
 	for _, char := range input {
 		existingChars[char] = true
 	}
@@ -87,7 +88,7 @@ func compres(input string) string {
 
 	entries := []compressEntry{}
 	runes := []rune(input)
-	currentEntry := compressEntry {
+	currentEntry := compressEntry{
 		char:  runes[0],
 		count: 0,
 	}
@@ -97,7 +98,7 @@ func compres(input string) string {
 			currentEntry.count++
 		} else {
 			entries = append(entries, currentEntry)
-			currentEntry = compressEntry {
+			currentEntry = compressEntry{
 				char:  char,
 				count: 1,
 			}
@@ -119,11 +120,11 @@ func compres(input string) string {
 
 func Map[KInput any, KOutput any](input []KInput, transform func(KInput) KOutput) ([]KOutput, error) {
 	if input == nil {
-		return []KOutput {}, errors.New("Nil input")
+		return []KOutput{}, errors.New("Nil input")
 	}
 
 	if transform == nil {
-		return []KOutput {}, errors.New("Nil transform")
+		return []KOutput{}, errors.New("Nil transform")
 	}
 	output := make([]KOutput, len(input))
 
@@ -134,9 +135,8 @@ func Map[KInput any, KOutput any](input []KInput, transform func(KInput) KOutput
 	return output, nil
 }
 
-
 type pixel struct {
-	red, green,	blue, alpha byte
+	red, green, blue, alpha byte
 }
 
 func rotateMatrix90Degrees(matrix *[][]pixel) {
@@ -160,7 +160,6 @@ func rotateMatrix90Degrees(matrix *[][]pixel) {
 		}
 	}
 }
-
 
 func zeroColumnsAndRows(matrix *[][]int) {
 	zeroRows := make(map[int]bool)
@@ -193,5 +192,5 @@ func isRotated(source, candidate string) bool {
 	if len(source) != len(candidate) {
 		return false
 	}
-	return strings.Contains(source + source, candidate)
+	return strings.Contains(source+source, candidate)
 }

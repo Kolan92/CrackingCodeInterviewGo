@@ -1,12 +1,13 @@
 package main
 
+import "constraints"
 
-type Node[T comparable] struct {
-	value T;
-	next *Node[T];
+type Node[T any] struct {
+	value T
+	next  *Node[T]
 }
 
-func removeDuplicates[T comparable](head *Node[T]) {
+func removeDuplicates[T constraints.Ordered](head *Node[T]) {
 	if head == nil {
 		return
 	}
@@ -14,10 +15,10 @@ func removeDuplicates[T comparable](head *Node[T]) {
 	firstNode := head
 	previousNode := head
 	nextNode := head.next
-	
+
 	for firstNode != nil {
 		for nextNode != nil {
-			if firstNode.value == nextNode.value{
+			if firstNode.value == nextNode.value {
 				if nextNode.next == nil {
 					previousNode.next = nil
 				} else {
@@ -40,8 +41,7 @@ func removeDuplicates[T comparable](head *Node[T]) {
 	}
 }
 
-
-func findLast[T comparable](head *Node[T], indexFromEnd int) *Node[T] {
+func findLast[T constraints.Ordered](head *Node[T], indexFromEnd int) *Node[T] {
 
 	count := 0
 
@@ -52,39 +52,39 @@ func findLast[T comparable](head *Node[T], indexFromEnd int) *Node[T] {
 		count++
 	}
 
-	for i := 0; i < count - indexFromEnd - 1; i++ {
+	for i := 0; i < count-indexFromEnd-1; i++ {
 		head = head.next
 	}
 	return head
 }
 
-func partition(head *Node[int], partitionValue int) *Node[int] {
-	var smallerHead *Node[int]
-	var smallerLast *Node[int]
-	var biggerHead *Node[int]
-	var biggerLast *Node[int]
+func partition[T constraints.Ordered](head *Node[T], partitionValue T) *Node[T] {
+	var smallerHead *Node[T]
+	var smallerLast *Node[T]
+	var biggerHead *Node[T]
+	var biggerLast *Node[T]
 
 	for head != nil {
 		if head.value < partitionValue {
 			if smallerHead == nil {
-				smallerHead = &Node[int] {
+				smallerHead = &Node[T]{
 					value: head.value,
 				}
 				smallerLast = smallerHead
 			} else {
-				smallerLast.next = &Node[int] {
+				smallerLast.next = &Node[T]{
 					value: head.value,
 				}
 				smallerLast = smallerLast.next
 			}
 		} else {
 			if biggerHead == nil {
-				biggerHead = &Node[int] {
+				biggerHead = &Node[T]{
 					value: head.value,
 				}
 				biggerLast = biggerHead
 			} else {
-				biggerLast.next = &Node[int] {
+				biggerLast.next = &Node[T]{
 					value: head.value,
 				}
 				biggerLast = biggerLast.next
@@ -98,37 +98,41 @@ func partition(head *Node[int], partitionValue int) *Node[int] {
 		smallerLast.next = biggerHead
 
 		return smallerHead
-	} 
+	}
 	return biggerHead
 }
 
-func sumReversed(numberA, numberB *Node[int]) *Node[int] {
+type Numeric interface {
+	~int | ~int8 | ~int16 | ~int32 | ~int64 | ~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr | ~float32 | ~float64
+}
 
-	var sumHead *Node[int]
-	var sumLast *Node[int]
+func sumReversed[T Numeric](numberA, numberB *Node[T]) *Node[T] {
+
+	var sumHead *Node[T]
+	var sumLast *Node[T]
 	carry := false
 
 	for numberA != nil || numberB != nil {
-		valueA := 0
-		valueB := 0
+		var valueA T
+		var valueB T
 
 		if numberA != nil {
-			valueA =  numberA.value
+			valueA = numberA.value
 		}
 		if numberB != nil {
-			valueB =  numberB.value
+			valueB = numberB.value
 		}
-		
+
 		sum, newCarry := calculateSum(valueA, valueB, carry)
 		carry = newCarry
 
 		if sumHead == nil {
-			sumHead = &Node[int] {
+			sumHead = &Node[T]{
 				value: sum,
 			}
 			sumLast = sumHead
 		} else {
-			sumLast.next = &Node[int] {
+			sumLast.next = &Node[T]{
 				value: sum,
 			}
 			sumLast = sumLast.next
@@ -141,18 +145,18 @@ func sumReversed(numberA, numberB *Node[int]) *Node[int] {
 			numberB = numberB.next
 		}
 	}
-	
+
 	return sumHead
 }
 
-func calculateSum(a,b int, previousCarry bool) (int, bool)  {
+func calculateSum[T Numeric](a, b T, previousCarry bool) (T, bool) {
 	sum := a + b
 	if previousCarry {
-		sum ++
+		sum++
 	}
 
 	carry := false
-	
+
 	if sum >= 10 {
 		carry = true
 		sum = sum - 10
@@ -161,7 +165,7 @@ func calculateSum(a,b int, previousCarry bool) (int, bool)  {
 	return sum, carry
 }
 
-func sum(numberA, numberB *Node[int]) *Node[int] {
+func sum[T Numeric](numberA, numberB *Node[T]) *Node[T] {
 
 	reversedNumberA := reverseLinkedList(numberA)
 	reversedNumberB := reverseLinkedList(numberB)
@@ -170,7 +174,7 @@ func sum(numberA, numberB *Node[int]) *Node[int] {
 	return reverseLinkedList(reversedSum)
 }
 
-func reverseLinkedList[T comparable](head *Node[T]) *Node[T] {
+func reverseLinkedList[T constraints.Ordered](head *Node[T]) *Node[T] {
 	var previous *Node[T]
 	current := head
 	following := head
@@ -185,7 +189,7 @@ func reverseLinkedList[T comparable](head *Node[T]) *Node[T] {
 	return previous
 }
 
-func findLoop[T comparable](head *Node[T]) *Node[T] {
+func findLoop[T constraints.Ordered](head *Node[T]) *Node[T] {
 
 	visitedNodes := make(map[*Node[T]]bool)
 
@@ -201,7 +205,7 @@ func findLoop[T comparable](head *Node[T]) *Node[T] {
 	return nil
 }
 
-func isPalindrom[T comparable](head *Node[T]) bool {
+func isPalindrom[T constraints.Ordered](head *Node[T]) bool {
 	reversedList := reverseLinkedList(head)
 	current := head
 	for current != nil {
